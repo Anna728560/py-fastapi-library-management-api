@@ -8,7 +8,7 @@ from database import SessionLocal
 app = FastAPI()
 
 
-def get_db():
+def get_db() -> Session:
     db = SessionLocal()
 
     try:
@@ -52,4 +52,3 @@ def read_books(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
 def read_books_by_author(author_id: int, db: Session = Depends(get_db)):
     books = crud.get_books_by_author(db, author_id=author_id)
     return books
-
